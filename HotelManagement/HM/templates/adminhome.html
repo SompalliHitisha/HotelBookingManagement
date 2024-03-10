@@ -1,0 +1,26 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KLU TRAVEL TOURISM MANAGEMENT</title>
+<link type="text/css" rel="stylesheet" href="{% static 'css/style.css'%}">
+
+</head>
+<body>
+<a href="{% url 'register' %}">|Sign-up| </a>
+<a href="{% url 'login' %}"> Login Page|</a>  &nbsp
+<a href="{% url 'home' %}">HomePage|</a> &nbsp
+<a href="{% url 'logout' %}">LOGOUT|</a> &nbsp
+{% block 'b1' %}
+<h2 align="center"><font color="brown" size = "10x"> HOTEL MANAGEMENT</font></h2>
+<div>
+    {% for i in messages %}
+    <h4 align="center"><font color="white">{{i}} </font>  </h4>
+    {% endfor %}
+</div>
+{% endblock %}
+<br>
+<br>
+
+</body>
+</html>

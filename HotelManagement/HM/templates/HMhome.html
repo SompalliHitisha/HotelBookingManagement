@@ -1,0 +1,60 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOTEL MANAGEMENT</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3517972.jpg');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+<a href="{% url 'home' %}"><font color="white">HomePage|</font></a> &nbsp
+<a href="{% url 'logout' %}"><font color="white">LOGOUT|</font></a> &nbsp
+
+{% block 'b1' %}
+<h2 align="center"><font color="white" size = "10x">Search your Destination</font></h2>
+<div>
+    {% for i in messages %}
+    <h4 align="center"><font color="white">{{i}} </font>  </h4>
+    {% endfor %}
+</div>
+<form action="{% url 'search_hotel' %}" method="GET">
+    <label for="city"><font color="white">Search by City:</font></label>
+    <select name="city" id="city">
+        <option value="city">City</option>
+        <option value="Dubai">Dubai</option>
+        <option value="west Bengal" >West Bengal</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Paris">Paris</option>
+        <option value="Venice">Venice</option>
+        <option value="Santorini">Santorini</option>
+        <option value="Newyork">New York</option>
+        <option value="Kyoto">Kyoto</option>
+        <option value="Maui">Maui</option>
+        <option value="Jaipur">Jaipur</option>
+        <option value="Goa">Goa</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Tokyo">Tokyo</option>
+        <option value="London">London</option>
+        <option value="Rio de Janeiro">Rio de Janeiro</option>
+        <option value="Sydney">Sydney</option>
+        <option value="Cape Town">Cape Town</option>
+        <option value="Bangkok">Bangkok</option>
+        <option value="Amsterdam">Amsterdam</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Rome">Rome</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+{% endblock %}
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp4602790.jpg'); /* Replace 'your-image-url.jpg' with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            height: 100vh; /* Set the height of the body to 100% of the viewport height */
+            display: flex; /* Use flexbox to center the content vertically */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            flex-direction: column; /* Align items vertically */
+        }
+        /* Optional: Style for the form */
+        form {
+            background-color: rgba(0, 0, 0, 0.8); /* Add a semi-transparent white background to the form */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: white; /* Set the color of the heading */
+            margin-top: 20px; /* Add some top margin to the heading */
+        }
+        h2 {
+            text-align: center;
+            color: white; /* Set the color of the heading */
+        }
+    </style>
+    <title>Feedback Form</title>
+    <!-- Additional styles for the rating stars -->
+    <style>
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            font-size: 40px;
+            padding: 5px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .rating input:checked ~ label {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1 ><font color="black">Feedback</font></h1> <!-- Moved the heading to the top of the page -->
+    <form method="post" action="{% url 'feedback' %}">
+        {% csrf_token %}
+        <label for="name"><font color="white">Name:</font> </label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email"><font color="white">Eamil:</font></label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message"><font color="white">Message:</font></label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+        </div><br><br>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+</body>
+</html>

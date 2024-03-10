@@ -1,0 +1,128 @@
+{% block 'b1' %}
+
+<a href="{% url 'home' %}"><font color="white">HomePage|</font></a> &nbsp
+
+<style>
+    body {
+        overflow: hidden; /* Hide scrollbars */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+
+    video#bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1; /* Place the video behind other content */
+    }
+
+    form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1; /* Ensure the form is above the video */
+        padding: 20px; /* Add some padding to the form */
+        background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background to the form */
+        border-radius: 10px; /* Add rounded corners to the form */
+        max-width: 80%; /* Adjust form width */
+    }
+
+    form table {
+        width: 100%;
+    }
+
+    form table tr td {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        background-color: #556B2F;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+        background-color: #45a049;
+    }
+
+    div {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: red;
+    }
+</style>
+
+<video autoplay muted loop id="bg-video">
+    <source src="https://motionbgs.com/media/2025/kanao-tsuyuri-with-butterfly.960x540.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<form method="post" action="{% url 'checkregistration' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td> Enter Name</td>
+            <td><input type="text" name="name" required/></td>
+        </tr>
+        <tr>
+            <td>Enter Address</td>
+            <td><input type="text" name="addr" required/></td>
+        </tr>
+        <tr>
+            <td>Enter Email Address</td>
+            <td><input type="text" name="email" required/></td>
+        </tr>
+        <tr>
+            <td>Enter Phone Number</td>
+            <td><input type="number" name="phno" required/></td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="uname" required/></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="pwd" required/></td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input type="password" name="cpwd" required/></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="submit" value="Signup" required/></td>
+            <td align="center"><input type="reset" value="Clear"></td>
+        </tr>
+    </table>
+</form>
+
+<div>
+    {% for i in messages %}
+    <h4>
+        <font color="red">
+            {{i}}
+        </font>
+    </h4>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="{% url 'home' %}"><font color="white">HomePage|</font></a> &nbsp
+    <a href="{% url 'logout' %}"><font color="white">LOGOUT|</font></a> &nbsp
+    <title>Book Hotel</title>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3517972.jpg'); /* Specify the path to your background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            height: 100vh; /* Make sure the background covers the entire viewport */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+        /* Add any additional styles for your page content here */
+    </style>
+</head>
+<body>
+<h1 align="center" ><font color="white">Book Hotel</font></h1>
+    <p align="center">Complete your booking:</p>
+
+    <form id="bookingForm" method="post" action="/book_hotel">
+        {% csrf_token %}
+            {% for room in available_rooms %}
+                <option value="{{ room.id }}">
+                    {% if room.ac %} AC {% else %} Non-AC {% endif %} -
+                    {% if room.smoking %} Smoking {% else %} Non-Smoking {% endif %}
+                    - Price: {{ room.price }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="guests"><font color="white" size="4x">Number of Guests:</font></label>
+        <input type="number" name="guests" id="guests" min="1" required>
+
+
+        <label for="ac"><font color="white"size="4x">Select AC or Non-AC:</font></label>
+        <select name="ac" id="ac">
+            <option value="AC">AC</option>
+            <option value="Non-AC">Non-AC</option>
+        </select>
+
+        <label for="smoking"><font color="white" size="4x">Select Smoking or Non-Smoking:</font></label>
+        <select name="smoking" id="smoking">
+            <option value="Smoking">Smoking</option>
+            <option value="Non-Smoking">Non-Smoking</option>
+        </select>
+
+        <!-- Button to proceed to the medical health module -->
+        <button type="button" onclick="redirectToMedicalHealth()">Proceed to Medical Health</button>
+    </form>
+
+    <!-- Medical Health Module -->
+    <div id="medicalHealthModule" style="display: none;">
+        <h2 align="center"><font color="white">Medical Health Information</font></h2>
+       <form method="post" action="/medical_health/"> <!-- Change action to "/medical_health/" -->
+    {% csrf_token %}
+    <!-- Add fields to collect medical information -->
+         <center>
+   <label for="medical_history"><font color="white">Medical History:</font> </label>
+    <textarea name="medical_history" id="medical_history" ></textarea>
+
+    <label for="current_health_status"><font color="white">Current Health Status:</font> </label>
+    <textarea name="current_health_status" id="current_health_status" ></textarea>
+
+             <label for="medical_services_required"><font color="white">Medical Services Required:</font></label>
+    <textarea name="medical_services_required" id="medical_services_required"></textarea>
+
+    <button type="submit">Submit</button>
+             </center>
+       </form>
+
+    </div>
+
+    <script>
+        function redirectToMedicalHealth() {
+            // Show the medical health module
+            document.getElementById("medicalHealthModule").style.display = "block";
+            // Hide the booking form
+            document.getElementById("bookingForm").style.display = "none";
+        }
+    </script>
+</body>
+</html>

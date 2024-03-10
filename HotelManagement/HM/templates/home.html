@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WELCOME TO SLEEPYCREW!</title>
+    <a href="{% url 'register' %}"><font color="white" size="5x">Sign-up|</font>  </a>
+    <a href="{% url 'login' %}"><font color="white" >  Login</font></a>  &nbsp
+    <br>
+    <br>
+    <br>
+    <style>
+        body {
+            background-image: url('https://th.bing.com/th/id/OIP.6VQ90DxYiNM1FBGTO5oOugHaEL?w=292&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7');
+            background-size: cover; /* Ensure the background image covers the entire page */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            background-position: center; /* Center the background image */
+            color: white; /* Set default text color to white */
+            font-family: Arial, sans-serif; /* Use a common font for better readability */
+            padding: 20px; /* Add padding for better spacing */
+        }
+
+        h3 {
+            margin-top: 0; /* Remove default margin */
+        }
+
+        .feature-container, .location-container {
+            display: flex; /* Use flexbox for better alignment */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            margin-top: 50px; /* Add margin for spacing */
+        }
+
+        .feature, .location {
+            margin: 10px; /* Add margin around each item */
+            padding: 10px; /* Add padding for better spacing */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            border-radius: 10px; /* Rounded corners for a softer look */
+            max-width: 300px; /* Limit maximum width of items */
+        }
+
+        img {
+            width: 100%; /* Make images responsive */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners for images */
+            cursor: pointer; /* Show pointer cursor on images */
+        }
+
+        .location-info {
+            display: none; /* Hide location info by default */
+            margin-top: 20px; /* Add margin */
+        }
+    </style>
+</head>
+<body>
+    <h3 align="center">We believe in more than just accommodation; we believe in crafting unforgettable experiences. Step into a world where luxury meets convenience, where every detail is meticulously curated to exceed your expectations.</h3>
+     <h2>Explore our Features</h2>
+    <div class="feature-container">
+        <div class="feature" onclick="showLocationInfo('Luxurious Room', 'These homes are designed specifically for a lifestyle where comfort and luxury home amenities are matched with high-end finishes and materials. Aside from quality, opulent finishes, luxury homes usually include one or more very custom spaces. The list of luxury rooms in houses can be quite intriguing in these dream homes!')">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.EHkOkOQcMloWfrd2qDWn9wHaE8&pid=Api&P=0&h=180" alt="Luxurious Room">
+            <h4>Luxurious Room</h4>
+        </div>
+        <div class="feature" onclick="showLocationInfo('Fine Dining', 'Fine dining is synonymous to luxury and elegance and the materials picked out for the furnishings and floors of the restaurant space should depict the same. Materials like marble, leather and glass are some of the common choices that portray opulence.')">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.whd_8j-GK1Fd2fFRewEXJwHaEK&pid=Api&P=0&h=180" alt="Fine Dining">
+            <h4>Fine Dining</h4>
+        </div>
+        <div class="feature" onclick="showLocationInfo('Spa Treatment', 'Common treatments include manicures, facials, pedicures and massages. A spa may offer hair styling and waxing services, holistic therapies such as Reiki and lymphatic drainage, or come with perks like water-based hydrotherapy circuits with saunas and thermal baths.')">
+            <img src="https://i.pinimg.com/originals/f5/7e/26/f57e26e03fee4f52d0dbeffe93cec958.jpg" alt="Spa Treatment">
+            <h4>Spa Treatment</h4>
+        </div>
+        <div class="feature" onclick="showLocationInfo('Beautiful Designs', 'If you are a home design enthusiast like me, you are sure to have a vast collection of interior design ideas. Whether you bookmark pages in interior design magazines, amass piles of tear-sheets, or save everything to a Pinterest board – finding and gathering interior design ideas that inspire you is easier than ever.')">
+            <img src="https://www.travelanddestinations.com/wp-content/uploads/2017/03/Beautiful-interiors-at-Hotel-Imperial-Vienna.jpg" alt="Beautiful Designs">
+            <h4>Beautiful Designs</h4>
+        </div>
+    </div>
+
+    <h2>Discover Our Locations</h2>
+    <div class="location-container">
+        <div class="location-info" id="locationInfo">
+            <h2 id="locationTitle"></h2>
+            <p id="locationDescription"></p>
+        </div>
+        <div class="location" onclick="showLocationInfo('Paris, France', '')">
+            <img src="https://images.pexels.com/photos/1308940/pexels-photo-1308940.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Paris, France">
+            <h4>Paris, France</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Venice, Italy', '')">
+            <img src="https://media.gettyimages.com/id/911570904/photo/view-of-venices-grand-canal.jpg?s=612x612&w=0&k=20&c=khmYb0vFJCf_kWGO9EGExrnRXqPHCD1PGIwTldnoxFQ=" alt="Venice, Italy">
+            <h4>Venice, Italy</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Santorini, Greece', '')">
+            <img src="https://cdn.pixabay.com/photo/2014/08/12/00/01/santorini-416135_640.jpg" alt="Santorini, Greece">
+            <h4>Santorini, Greece</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('New York City, USA', '')">
+            <img src="https://images.pexels.com/photos/2767739/pexels-photo-2767739.jpeg?auto=compress&cs=tinysrgb&w=600" alt="New York City, USA">
+            <h4>Welcome to New York City, the cultural melting pot where iconic landmarks, world-class entertainment, and diverse neighborhoods converge to create an unforgettable urban experience. Discover the excitement and energy of the city that never sleeps with these must-see attractions</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Kyoto, Japan', '')">
+            <img src="https://www.planetware.com/photos-large/JPN/japan-kyoto-kinkaku-ji-golden-pavilion.jpg" " alt="Kyoto, Japan">
+            <h4>Kyoto, Japan</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Maui, Hawaii', '')">
+            <img src="https://www.planetware.com/wpimages/2022/04/hawaii-maui-top-attractions-things-to-do-experience-traditional-hawaiian-luau-lahaina-old-lahaina-luau.jpg" alt="Maui, Hawaii">
+            <h4>Maui, Hawaii</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Dubai, UAE', '')">
+            <img src="https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dubai, UAE">
+            <h4>Dubai, UAE</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Jaipur, India', '')">
+            <img src="https://images.pexels.com/photos/2870167/pexels-photo-2870167.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jaipur, India">
+            <h4>Jaipur, India</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Goa, India', '')">
+            <img src="https://static2.tripoto.com/media/filter/tst/img/OgData/1572333431_istock_000026994380xlarge.jpg" alt="Goa, India">
+            <h4>Goa, India</h4>
+        </div>
+        <div class="location" onclick="showLocationInfo('Kerala, India', '')">
+            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0a/08/be/7a.jpg" alt="Kerala, India">
+            <h4>Kerala, India</h4>
+        </div>
+    </div>
+
+    <script>
+        function showLocationInfo(title, description) {
+            var locationTitle = document.getElementById('locationTitle');
+            var locationDescription = document.getElementById('locationDescription');
+            var locationInfo = document.getElementById('locationInfo');
+
+            locationTitle.textContent = title;
+            locationDescription.textContent = description;
+            locationInfo.style.display = 'block'; // Show location info
+        }
+    </script>
+</body>
+</html>
+
+
+

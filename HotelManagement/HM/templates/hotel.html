@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel List</title>
+    <a href="{% url 'home' %}"><font color="white">HomePage|</font></a> &nbsp
+    <a href="{% url 'logout' %}"><font color="white">LOGOUT|</font></a> &nbsp
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3517972.jpg'); /* Specify the path to your background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            height: 100vh; /* Make sure the background covers the entire viewport */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Hide check-in and check-out fields initially */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2 align="center">Available Hotels</h2>
+
+    <form id="bookHotelForm" action="{% url 'book_hotel' %}" method="POST">
+        {% csrf_token %}
+        <center>
+        <label for="hotel">Select a Hotel:</label>
+        <select name="hotel" id="hotel">
+            {% for hotel in hotels %}
+                <option value="{{ hotel.id }}">{{ hotel.name }} - {{ hotel.address }}</option>
+                <!-- Display other hotel information as needed -->
+            {% endfor %}
+        </select>
+        <button type="button" onclick="showCheckInOut()">Book Hotel</button>
+<br>
+<br>
+<br>
+        <!-- Check-in and check-out fields -->
+        <div id="checkInOutFields" class="hidden">
+            <label for="checkInDate">Check-In Date:</label>
+            <input type="date" name="checkInDate" id="checkInDate" required>
+
+            <label for="checkOutDate">Check-Out Date:</label>
+            <input type="date" name="checkOutDate" id="checkOutDate"required>
+
+            <!-- Room selection -->
+            <div id="roomSelection">
+                <!-- Rooms will be dynamically loaded here -->
+            </div>
+            <br>
+            <br>
+            <br>
+
+            <button type="submit">Confirm Booking</button>
+        </div>
+            </center>
+    </form>
+
+    <script>
+        function showCheckInOut() {
+            // Show check-in and check-out fields
+            document.getElementById("checkInOutFields").classList.remove("hidden");
+        }
+
+        // Function to fetch available rooms for selected hotel and dates
+        function fetchAvailableRooms() {
+            var hotelId = document.getElementById("hotel").value;
+            var checkInDate = document.getElementById("checkInDate").value;
+            var checkOutDate = document.getElementById("checkOutDate").value;
+
+            // Perform AJAX request to fetch available rooms
+            // Example:
+            // var url = "/fetch_available_rooms?hotel_id=" + hotelId + "&check_in=" + checkInDate + "&check_out=" + checkOutDate;
+            // Fetch rooms and populate the room selection dropdown
+        }
+
+        // Attach event listeners to check-in and check-out date inputs
+        document.getElementById("checkInDate").addEventListener("change", fetchAvailableRooms);
+        document.getElementById("checkOutDate").addEventListener("change", fetchAvailableRooms);
+    </script>
+</body>
+</html>
